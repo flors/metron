@@ -3,7 +3,7 @@ This example will receive multiple universes via Artnet and control a strip of w
 Adafruit's NeoPixel library: https://github.com/adafruit/Adafruit_NeoPixel
 This example may be copied under the terms of the MIT license, see the LICENSE file for details
 */
-
+//
 #include <Artnet.h>
 #include <Ethernet.h>
 #include <EthernetUdp.h>
