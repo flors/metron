@@ -69,20 +69,21 @@ void routeTone(OSCMessage &msg, int addrOffset ) {
 
 
   if (msg.isInt(0)) {
-   // Serial.println("Receiving message INT!");
+    // Serial.println("Receiving message INT!");
     int value;
     value = msg.getInt(0);
     float pulselength = map(value, 0, 180, SERVOMIN, SERVOMAX);
-    pwm.setPWM(0,0, pulselength);
+    pwm.setPWM(0, 0, pulselength);
     //Serial.println(value);
   } //otherwise it's a floating point frequency in Hz
   else if (msg.isFloat(0)) {
-   // Serial.println("Receiving message FLOAT!");
+    //Serial.println("Receiving message FLOAT!");
 
     float value;
-    value = msg.getFloat(0);
+    value = msg.getFloat(2);
     float pulselength = map(value, 0, 180, SERVOMIN, SERVOMAX);
     pwm.setPWM(0, 0, pulselength);
+
   }
 
   //iterate through all the analog pins
@@ -136,7 +137,7 @@ void loop() {
 
     //if (!bundleIN.hasError()) {
     //Serial.println("No error!");
-    bundleIN.route("/tone", routeTone);
+    bundleIN.route("/caja1", routeTone);
     //} else {
     //Serial.println("Error!");
     //}
