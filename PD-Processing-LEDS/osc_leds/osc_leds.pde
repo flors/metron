@@ -8,9 +8,10 @@
 
 import oscP5.*;
 import netP5.*;
-import codeanticode.syphon.*;
 
-SyphonServer server;
+import spout.*;
+
+Spout spout;
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -22,25 +23,26 @@ float v3;
 float v4;
 
 void setup() {
-  size(400,400);
+  size(400,400,P2D);
   frameRate(25);
   /* start oscP5, listening for incoming messages at port 12000 */
   oscP5 = new OscP5(this,8000);
-  server = new SyphonServer(this, "Processing Syphon");
+  spout = new Spout(this);
+    spout.createSender("Spout Processing");
 }
 
 void draw() {
   background(0);
   noStroke();
   fill(v1);
-  rect(0,0,width/2, height/2);
+  rect(0,0,width, height/4);
   fill(v2);
-  rect(width/2,0,width/2, height/2);
+  rect(0,height/4,width, height/4);
   fill(v3);
-  rect(0,height/2,width/2, height/2);
+  rect(0,height/2,width, height/4);
   fill(v4);
-  rect(width/2,height/2,width/2, height/2);
-  server.sendScreen();
+  rect(0,3*height/4,width, height/4);
+  spout.sendTexture();
 }
 
 
@@ -50,7 +52,7 @@ void draw() {
 void oscEvent(OscMessage theOscMessage) {
   /* check if theOscMessage has the address pattern we are looking for. */
   
-  if(theOscMessage.checkAddrPattern("/caja1")==true) {
+  if(theOscMessage.checkAddrPattern("/medias/Solid_Color/HSV/Value")==true) {
     /* check if the typetag is the right one. */
     if(theOscMessage.checkTypetag("fffff")) {
       /* parse theOscMessage and extract the values from the osc message arguments. */
