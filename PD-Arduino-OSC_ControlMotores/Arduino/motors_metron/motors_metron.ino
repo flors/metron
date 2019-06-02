@@ -49,67 +49,31 @@ char * numToOSCAddress( int pin) {
   return &s[i];
 }
 
-/**
-   TONE
 
-   square wave output "/tone"
+void controlMotors(OSCMessage &msg, int addrOffset ) {
 
-   format:
-   /tone/pin
-
-     (digital value) (float value) = frequency in Hz
-     (no value) disable tone
-
- **/
-
-void routeTone(OSCMessage &msg, int addrOffset ) {
-
-
-
-
-
-  if (msg.isInt(0)) {
-    // Serial.println("Receiving message INT!");
-    int value;
-    value = msg.getInt(0);
-    float pulselength = map(value, 0, 180, SERVOMIN, SERVOMAX);
-    pwm.setPWM(0, 0, pulselength);
-    //Serial.println(value);
-  } //otherwise it's a floating point frequency in Hz
-  else if (msg.isFloat(0)) {
+  if (msg.isFloat(0)) {
     //Serial.println("Receiving message FLOAT!");
 
-    float value;
-    value = msg.getFloat(2);
-    float pulselength = map(value, 0, 180, SERVOMIN, SERVOMAX);
-    pwm.setPWM(0, 0, pulselength);
+    float value2, value3;
+    value2 = msg.getFloat(2);
+    value3 = msg.getFloat(3);
+    float pulselength1 = map(value2, 0, 180, SERVOMIN, SERVOMAX);
+    float pulselength2 = map(value3, 0, 180, SERVOMIN, SERVOMAX);
+    pwm.setPWM(0, 0, pulselength1);
+    pwm.setPWM(1, 0, pulselength1);
+    pwm.setPWM(3, 0, pulselength2);
+    pwm.setPWM(2, 0, pulselength2);
+    pwm.setPWM(4, 0, pulselength2);
+    pwm.setPWM(5, 0, pulselength2);
+    pwm.setPWM(6, 0, pulselength2);
+    pwm.setPWM(7, 0, pulselength2);
+    pwm.setPWM(8, 0, pulselength2);
+    pwm.setPWM(9, 0, pulselength2);
+    pwm.setPWM(10, 0, pulselength2);
+    pwm.setPWM(11, 0, pulselength2);
 
   }
-
-  //iterate through all the analog pins
-  /*for(byte pin = 0; pin < NUM_DIGITAL_PINS; pin++){
-    //match against the pin number strings
-    int pinMatched = msg.match(numToOSCAddress(pin), addrOffset);
-    if(pinMatched){
-      unsigned int frequency = 0;
-      //if it has an int, then it's an integers frequency in Hz
-      if (msg.isInt(0)){
-        frequency = msg.getInt(0);
-      } //otherwise it's a floating point frequency in Hz
-      else if(msg.isFloat(0)){
-        frequency = msg.getFloat(0);
-      }
-      else
-        noTone(pin);
-      if(frequency>0)
-      {
-         if(msg.isInt(1))
-           tone(pin, frequency, msg.getInt(1));
-         else
-           tone(pin, frequency);
-      }
-    }
-    }*/
 }
 
 void setup() {
@@ -137,7 +101,7 @@ void loop() {
 
     //if (!bundleIN.hasError()) {
     //Serial.println("No error!");
-    bundleIN.route("/caja1", routeTone);
+    bundleIN.route("/caja1", controlMotors);
     //} else {
     //Serial.println("Error!");
     //}
