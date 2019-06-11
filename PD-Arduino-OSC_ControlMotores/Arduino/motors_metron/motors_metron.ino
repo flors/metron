@@ -6,9 +6,13 @@
 #include <OSCBoards.h>
 #include <Adafruit_PWMServoDriver.h>
 
-Adafruit_PWMServoDriver pwm_left = Adafruit_PWMServoDriver(0x40);
-Adafruit_PWMServoDriver pwm_center = Adafruit_PWMServoDriver(0x41);
-Adafruit_PWMServoDriver pwm_right = Adafruit_PWMServoDriver(0x42);
+//Adafruit_PWMServoDriver pwm_left = Adafruit_PWMServoDriver(0x40);
+//Adafruit_PWMServoDriver pwm_center = Adafruit_PWMServoDriver(0x41);
+//Adafruit_PWMServoDriver pwm_right = Adafruit_PWMServoDriver(0x42);
+
+Adafruit_PWMServoDriver pwm_left = Adafruit_PWMServoDriver(&Wire, 0x40);
+Adafruit_PWMServoDriver pwm_center = Adafruit_PWMServoDriver(&Wire, 0x41);
+Adafruit_PWMServoDriver pwm_right = Adafruit_PWMServoDriver(&Wire, 0x42);
 
 #define SERVOMIN  150 // this is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX  600// this is the 'maximum' pulse length count (out of 4096)
@@ -30,7 +34,7 @@ byte mac[] = {
 }; // you can find this written on the board of some Arduino Ethernets or shields
 
 //the Arduino's IP - Check advateck IP address
-IPAddress ip(192, 168, 0, 55);
+IPAddress ip(128, 32, 122, 252);
 
 //port numbers
 const unsigned int inPort = 8888;
@@ -54,9 +58,9 @@ char * numToOSCAddress( int pin) {
 
 
 void controlMotors(OSCMessage &msg, int addrOffset ) {
-
+Serial.println("Receiving message FLOAT!");
   if (msg.isFloat(0)) {
-    //Serial.println("Receiving message FLOAT!");
+    
 
     //READ AND SAVE DATA
     //Left panel
@@ -194,7 +198,7 @@ void loop() {
 
     //if (!bundleIN.hasError()) {
     //Serial.println("No error!");
-    bundleIN.route("/motores", controlMotors);
+    bundleIN.route("/caja1", controlMotors);
     //} else {
     //Serial.println("Error!");
     //}
