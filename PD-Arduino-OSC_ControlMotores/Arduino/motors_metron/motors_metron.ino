@@ -55,13 +55,20 @@ char * numToOSCAddress( int pin) {
 
 
 void controlMotors(OSCMessage &msg, int addrOffset ) {
-  //Serial.println("Receiving message FLOAT!");
+  Serial.println("Receiving");
+  Serial.println(msg.isInt(0));
+  Serial.println(msg.isFloat(0));
+  Serial.println(msg.getInt(2));
+  Serial.println(msg.getInt(3));
+  Serial.println(msg.getInt(5));
+  
+  Serial.println("---------");
   //if (msg.isFloat(0)) {
 
 
   //READ AND SAVE DATA
   //Left panel
-  pwm2_l = map(msg.getFloat(1), 0, 180, SERVOMIN, SERVOMAX); // WARNING!!! Check PD: which is the first motor value!???????
+  pwm2_l = map(msg.getInt(1), 0, 180, SERVOMIN, SERVOMAX); // WARNING!!! Check PD: which is the first motor value!???????
   pwm1_l = map(msg.getFloat(2), 0, 180, SERVOMIN, SERVOMAX);
   pwm0_l = map(msg.getFloat(3), 0, 180, SERVOMIN, SERVOMAX);
   pwm4_l = map(msg.getFloat(4), 0, 180, SERVOMIN, SERVOMAX);
@@ -167,6 +174,7 @@ void setup() {
   Ethernet.begin(mac, ip);
   Udp.begin(inPort);
   Serial.begin(9600);
+  Serial.println("Setting up...");
 
   //Motors control
   pwm_left.begin();
