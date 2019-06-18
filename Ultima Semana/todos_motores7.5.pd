@@ -1,4 +1,4 @@
-#N canvas 0 0 804 970 10;
+#N canvas 0 23 1440 832 10;
 #X obj 740 -558 cnv 15 859 272 empty empty empty 20 12 0 14 -96876
 -66577 0;
 #X obj 10 -558 cnv 15 723 272 empty empty empty 20 12 0 14 -261676
@@ -759,7 +759,7 @@ f f f f f f f f f f f f f f f f, f 213;
 #X floatatom 1167 -653 5 0 0 0 - - -, f 5;
 #X obj 1217 -749 loadbang;
 #X obj 765 -651 hsl 128 15 0 5 0 0 actual_cycle empty empty -2 -8 0
-10 -262144 -1 -1 254 1;
+10 -262144 -1 -1 635 1;
 #X obj 1166 -725 osc~;
 #X obj 1203 -654 s osc;
 #X text 738 -1153 Sistema;
@@ -2063,7 +2063,7 @@ f f f f f f f f f f f f f f f f, f 213;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 100 -2040 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -2280,7 +2280,7 @@ f f f f f f f f f f f f f f f f, f 213;
 %preset% 1 200 %preset% 0 137.008 %preset% 2 137.008 %preset% 3 500
 %node% 1 228 %preset% 2 2.8189 %preset% 0 2.8189 %preset% 3 10;
 #X obj 826 -543 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
+-1 -1 0;
 #X msg 775 -499 status;
 #X obj 1460 -1097 preset_node another;
 #X obj 1498 -1052 preset_node another;
@@ -3442,7 +3442,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 100 -1340 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -3544,7 +3544,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 300 -1861 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -3646,7 +3646,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 299 -1511 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -3748,7 +3748,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 466 -1345 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -3850,7 +3850,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 470 -2026 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -3952,7 +3952,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 473 -1701 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -4005,7 +4005,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X restore 639 -1700 pd margenD;
 #N canvas 0 22 450 300 center 0;
 #X floatatom 184 68 5 0 0 0 - a2 -, f 5;
-#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 183 105 expr if($f1 > 40 && $f1 <50 \, 1 \, 0);
 #X obj 220 530 line;
@@ -4185,7 +4185,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X restore 379 -1510 pd center;
 #N canvas 0 22 450 300 center 0;
 #X floatatom 184 68 5 0 0 0 - a6 -, f 5;
-#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 183 105 expr if($f1 > 40 && $f1 <50 \, 1 \, 0);
 #X obj 220 530 line;
@@ -4414,7 +4414,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 667 -1875 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -4467,7 +4467,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X restore 833 -1874 pd margenD;
 #N canvas 0 22 450 300 center 0;
 #X floatatom 184 68 5 0 0 0 - a10 -, f 5;
-#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 183 105 expr if($f1 > 40 && $f1 <50 \, 1 \, 0);
 #X obj 220 530 line;
@@ -4561,7 +4561,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 663 -1526 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -4708,7 +4708,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 847 -1704 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -4855,7 +4855,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 843 -1355 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5002,7 +5002,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1046 -1873 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5149,7 +5149,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1042 -1524 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5202,7 +5202,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X restore 1208 -1523 pd margenD;
 #N canvas 0 22 450 300 center 0;
 #X floatatom 184 68 5 0 0 0 - a14 -, f 5;
-#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 183 105 expr if($f1 > 40 && $f1 <50 \, 1 \, 0);
 #X obj 220 530 line;
@@ -5296,7 +5296,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 842 -2042 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5443,7 +5443,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1245 -1705 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5496,7 +5496,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X restore 1411 -1704 pd margenD;
 #N canvas 0 22 450 300 center 0;
 #X floatatom 184 68 5 0 0 0 - a18 -, f 5;
-#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 183 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 183 105 expr if($f1 > 40 && $f1 <50 \, 1 \, 0);
 #X obj 220 530 line;
@@ -5737,7 +5737,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1240 -2043 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -5884,7 +5884,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1441 -1879 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -6031,7 +6031,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1437 -1530 pd margenI;
-#N canvas 647 0 533 653 rampaI 0;
+#N canvas 647 22 533 653 rampaI 0;
 #X obj 46 143 cnv 15 110 282 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 98 505 line;
@@ -6082,6 +6082,7 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X restore 1603 -1529 pd margenD;
+#X msg 173 -809 connect 192.168.0.55 8888;
 #X connect 87 0 186 0;
 #X connect 87 0 188 0;
 #X connect 87 0 250 0;
@@ -6258,3 +6259,4 @@ f f f f f f f f f f f f f f f f, f 217;
 #X connect 344 0 341 0;
 #X connect 347 0 348 0;
 #X connect 349 0 346 0;
+#X connect 350 0 127 0;
