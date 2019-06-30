@@ -6,21 +6,33 @@
 #include <OSCBoards.h>
 #include <Adafruit_PWMServoDriver.h>
 
+#define SERVOMIN  150 
+#define SERVOMAX  600
+
+#define SERVOMIN_L0  150 
+#define SERVOMAX_L0  600
+
+#define SERVOMIN_L1  150 
+#define SERVOMAX_L1  520
+
+#define SERVOMIN_L2  108 
+#define SERVOMAX_L2  550
+
 Adafruit_PWMServoDriver pwm_left = Adafruit_PWMServoDriver(&Wire, 0x40);
 Adafruit_PWMServoDriver pwm_center = Adafruit_PWMServoDriver(&Wire, 0x41);
 Adafruit_PWMServoDriver pwm_right = Adafruit_PWMServoDriver(&Wire, 0x42);
 
-#define SERVOMIN  150 // this is the 'minimum' pulse length count (out of 4096)
-#define SERVOMAX  600// this is the 'maximum' pulse length count (out of 4096)
 
 //Motors - left panel
-float pwm0_l, pwm1_l, pwm2_l, pwm3_l, pwm4_l, pwm5_l, pwm8_l, pwm9_l, pwm10_l, pwm11_l, pwm12_l, pwm13_l, pwm14_l, pwm15_l;
+int pwm0_l, pwm1_l, pwm2_l, pwm3_l, pwm4_l, pwm5_l, pwm8_l, pwm9_l, pwm10_l, pwm11_l, pwm12_l, pwm13_l, pwm14_l, pwm15_l;
+
+//pwm0_l OK
 
 //Motors - center panel
-float pwm0_c, pwm1_c, pwm2_c, pwm3_c, pwm4_c, pwm5_c, pwm6_c, pwm8_c, pwm9_c, pwm13_c, pwm14_c, pwm15_c;
+int pwm0_c, pwm1_c, pwm2_c, pwm3_c, pwm4_c, pwm5_c, pwm6_c, pwm8_c, pwm9_c, pwm13_c, pwm14_c, pwm15_c;
 
 //Motors - right panel
-float pwm0_r, pwm1_r, pwm2_r, pwm3_r, pwm4_r, pwm5_r, pwm6_r, pwm7_r, pwm8_r, pwm9_r, pwm13_r, pwm14_r, pwm15_r;
+int pwm0_r, pwm1_r, pwm2_r, pwm3_r, pwm4_r, pwm5_r, pwm6_r, pwm7_r, pwm8_r, pwm9_r, pwm13_r, pwm14_r, pwm15_r;
 
 
 //UDP communication
@@ -61,48 +73,49 @@ void controlMotors(OSCMessage &msg, int addrOffset ) {
 
   //READ AND SAVE DATA
   //Left panel
-  pwm2_l = map(msg.getFloat(1), 0, 180, SERVOMIN, SERVOMAX); // WARNING!!! Check PD: which is the first motor value!???????
-  pwm1_l = map(msg.getFloat(2), 0, 180, SERVOMIN, SERVOMAX);
-  pwm0_l = map(msg.getFloat(3), 0, 180, SERVOMIN, SERVOMAX);
-  pwm4_l = map(msg.getFloat(4), 0, 180, SERVOMIN, SERVOMAX);
-  pwm3_l = map(msg.getFloat(5), 0, 180, SERVOMIN, SERVOMAX);
-  pwm5_l = map(msg.getFloat(6), 0, 180, SERVOMIN, SERVOMAX);
-  pwm8_l = map(msg.getFloat(7), 0, 180, SERVOMIN, SERVOMAX);
-  pwm12_l = map(msg.getFloat(8), 0, 180, SERVOMIN, SERVOMAX);
-  pwm9_l = map(msg.getFloat(9), 0, 180, SERVOMIN, SERVOMAX);
-  pwm10_l = map(msg.getFloat(10), 0, 180, SERVOMIN, SERVOMAX);
-  pwm13_l = map(msg.getFloat(11), 0, 180, SERVOMIN, SERVOMAX);
-  pwm14_l = map(msg.getFloat(12), 0, 180, SERVOMIN, SERVOMAX);
-  pwm15_l = map(msg.getFloat(13), 0, 180, SERVOMIN, SERVOMAX);
+  pwm2_l = int(map(msg.getFloat(1), 0, 180, SERVOMIN_L2, SERVOMAX_L2)); 
+  pwm1_l = int(map(msg.getFloat(2), 0, 180, SERVOMIN_L1, SERVOMAX_L1));
+  pwm0_l = int(map(msg.getFloat(3), 0, 180, SERVOMIN_L0, SERVOMAX_L0));
+ 
+  pwm4_l = int(map(msg.getFloat(4), 0, 180, SERVOMIN, SERVOMAX));
+  pwm3_l = int(map(msg.getFloat(5), 0, 180, SERVOMIN, SERVOMAX));
+  pwm5_l =  int(map(msg.getFloat(6), 0, 180, SERVOMIN, SERVOMAX));
+  pwm8_l =  int(map(msg.getFloat(7), 0, 180, SERVOMIN, SERVOMAX));
+  pwm12_l =  int(map(msg.getFloat(8), 0, 180, SERVOMIN, SERVOMAX));
+  pwm9_l =  int(map(msg.getFloat(9), 0, 180, SERVOMIN, SERVOMAX));
+  pwm10_l = int(map(msg.getFloat(10), 0, 180, SERVOMIN, SERVOMAX));
+  pwm13_l = int(map(msg.getFloat(11), 0, 180, SERVOMIN, SERVOMAX));
+  pwm14_l = int(map(msg.getFloat(12), 0, 180, SERVOMIN, SERVOMAX));
+  pwm15_l = int(map(msg.getFloat(13), 0, 180, SERVOMIN, SERVOMAX));
 
   //Center panel
-  pwm1_c = map(msg.getFloat(14), 0, 180, SERVOMIN, SERVOMAX);
-  pwm0_c = map(msg.getFloat(15), 0, 180, SERVOMIN, SERVOMAX);
-  pwm4_c = map(msg.getFloat(16), 0, 180, SERVOMIN, SERVOMAX);
-  pwm3_c = map(msg.getFloat(17), 0, 180, SERVOMIN, SERVOMAX);
-  pwm2_c = map(msg.getFloat(18), 0, 180, SERVOMIN, SERVOMAX);
-  pwm5_c = map(msg.getFloat(19), 0, 180, SERVOMIN, SERVOMAX);
-  pwm6_c = map(msg.getFloat(20), 0, 180, SERVOMIN, SERVOMAX);
-  pwm8_c = map(msg.getFloat(21), 0, 180, SERVOMIN, SERVOMAX);
-  pwm9_c = map(msg.getFloat(22), 0, 180, SERVOMIN, SERVOMAX);
-  pwm14_c = map(msg.getFloat(23), 0, 180, SERVOMIN, SERVOMAX);
-  pwm13_c = map(msg.getFloat(24), 0, 180, SERVOMIN, SERVOMAX);
-  pwm15_c = map(msg.getFloat(25), 0, 180, SERVOMIN, SERVOMAX);
+  pwm1_c =  int(map(msg.getFloat(14), 0, 180, SERVOMIN, SERVOMAX));
+  pwm0_c =  int(map(msg.getFloat(15), 0, 180, SERVOMIN, SERVOMAX));
+  pwm4_c =  int(map(msg.getFloat(16), 0, 180, SERVOMIN, SERVOMAX));
+  pwm3_c =  int(map(msg.getFloat(17), 0, 180, SERVOMIN, SERVOMAX));
+  pwm2_c =  int(map(msg.getFloat(18), 0, 180, SERVOMIN, SERVOMAX));
+  pwm5_c =  int(map(msg.getFloat(19), 0, 180, SERVOMIN, SERVOMAX));
+  pwm6_c =  int(map(msg.getFloat(20), 0, 180, SERVOMIN, SERVOMAX));
+  pwm8_c =  int(map(msg.getFloat(21), 0, 180, SERVOMIN, SERVOMAX));
+  pwm9_c =  int(map(msg.getFloat(22), 0, 180, SERVOMIN, SERVOMAX));
+  pwm14_c = int(map(msg.getFloat(23), 0, 180, SERVOMIN, SERVOMAX));
+  pwm13_c = int(map(msg.getFloat(24), 0, 180, SERVOMIN, SERVOMAX));
+  pwm15_c = int(map(msg.getFloat(25), 0, 180, SERVOMIN, SERVOMAX));
 
   //Right panel
-  pwm2_r = map(msg.getFloat(26), 0, 180, SERVOMIN, SERVOMAX);
-  pwm1_r = map(msg.getFloat(27), 0, 180, SERVOMIN, SERVOMAX);
-  pwm0_r = map(msg.getFloat(28), 0, 180, SERVOMIN, SERVOMAX);
-  pwm5_r = map(msg.getFloat(29), 0, 180, SERVOMIN, SERVOMAX);
-  pwm4_r = map(msg.getFloat(30), 0, 180, SERVOMIN, SERVOMAX);
-  pwm7_r = map(msg.getFloat(31), 0, 180, SERVOMIN, SERVOMAX);
-  pwm6_r = map(msg.getFloat(32), 0, 180, SERVOMIN, SERVOMAX);
-  pwm3_r = map(msg.getFloat(33), 0, 180, SERVOMIN, SERVOMAX);
-  pwm8_r = map(msg.getFloat(34), 0, 180, SERVOMIN, SERVOMAX);
-  pwm9_r = map(msg.getFloat(35), 0, 180, SERVOMIN, SERVOMAX);
-  pwm13_r = map(msg.getFloat(36), 0, 180, SERVOMIN, SERVOMAX);
-  pwm14_r = map(msg.getFloat(37), 0, 180, SERVOMIN, SERVOMAX);
-  pwm15_r = map(msg.getFloat(38), 0, 180, SERVOMIN, SERVOMAX);
+  pwm2_r  = int(map(msg.getFloat(26), 0, 180, SERVOMIN, SERVOMAX));
+  pwm1_r  = int(map(msg.getFloat(27), 0, 180, SERVOMIN, SERVOMAX));
+  pwm0_r  = int(map(msg.getFloat(28), 0, 180, SERVOMIN, SERVOMAX));
+  pwm5_r  = int(map(msg.getFloat(29), 0, 180, SERVOMIN, SERVOMAX));
+  pwm4_r  = int(map(msg.getFloat(30), 0, 180, SERVOMIN, SERVOMAX));
+  pwm7_r  = int(map(msg.getFloat(31), 0, 180, SERVOMIN, SERVOMAX));
+  pwm6_r  = int(map(msg.getFloat(32), 0, 180, SERVOMIN, SERVOMAX));
+  pwm3_r  = int(map(msg.getFloat(33), 0, 180, SERVOMIN, SERVOMAX));
+  pwm8_r  = int(map(msg.getFloat(34), 0, 180, SERVOMIN, SERVOMAX));
+  pwm9_r  = int(map(msg.getFloat(35), 0, 180, SERVOMIN, SERVOMAX));
+  pwm13_r = int(map(msg.getFloat(36), 0, 180, SERVOMIN, SERVOMAX));
+  pwm14_r = int(map(msg.getFloat(37), 0, 180, SERVOMIN, SERVOMAX));
+  pwm15_r = int(map(msg.getFloat(38), 0, 180, SERVOMIN, SERVOMAX));
 
 
   //MOVE MOTORS
@@ -167,6 +180,7 @@ void setup() {
   Ethernet.begin(mac, ip);
   Udp.begin(inPort);
   Serial.begin(9600);
+  Serial.println("Setting up....");
 
   //Motors control
   pwm_left.begin();
@@ -190,12 +204,15 @@ void loop() {
   int size;
 
   if ( (size = Udp.parsePacket()) > 0) {
-    while (size--)
+    while (size--) {
       bundleIN.fill(Udp.read());
+    }
 
     //if (!bundleIN.hasError()) {
     //Serial.println("No error!");
+    //Serial.println("----- controlamos motores");
     bundleIN.route("/motores", controlMotors);
+    //Serial.println("***** fin control");
     //} else {
     //Serial.println("Error!");
     //}
